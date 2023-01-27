@@ -1,0 +1,113 @@
+
+<%- include("./partials/header")  %>
+
+
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">Counter App</a>
+</nav>
+
+
+<!-- <script>
+  let handleClick = async ()=>{
+      try {
+          const response = await axios.get("https://example-1.com/")
+          console.log(response)   
+      } catch (error) {
+          console.log(error)
+      }
+  }
+  </script> -->
+<div class="container mt-5">
+    <form action="/add/todo" method="POST" class="d-flex">
+        <input type="text" name="todo" class="form-control" placeholder="Enter URL">
+        <input type="submit" value="Add URL" class="btn btn-md btn-primary mx-2">
+    </form>
+
+
+    <!-- <ul class="list-group my-5">
+        <% todo.forEach(todos => { %>
+        <li class="list-group-item"><%= todos.todo %> <a href="/delete/todo/<%= todos._id %>"
+                class="btn btn-danger btn-sm">Delete</a></li>
+        <% }) %>
+    </ul> -->
+
+    <ul class="list-group my-5">
+        <% todo.forEach((todos,index) => { %>
+
+
+  <li class="list-group-item">URL <%=index+1 %>:<%= todos.todo %> 
+
+  <form method="GET" action="/count/todo/<%= todos._id %>">
+    <li class="list-group-item bold_text ">No.of words:<span></span>
+      <button 
+      class="btn btn-danger btn-sm align-left">Count</button>
+    </li>
+  </form>
+  
+
+  <form method="GET" action="/imgcount/todo/<%= todos._id %>">
+    <li class="list-group-item bold_text">No.of Images: <span>gg</span>
+      <button 
+      class="btn btn-danger btn-sm">Count</button>
+    </li>
+  </form>
+    
+
+              
+        <% }) %>
+
+    </ul>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">URL</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+
+          </tr>
+        </thead>
+        <tbody>
+            <% todo.forEach((todos,index) => { %>
+          <tr>
+            <th scope="row"><%= 
+                index+1 %></th>
+            <td><%= todos.todo %></td>
+            <td><a href="/delete/todo/<%= todos._id %>"
+                class="btn btn-danger btn-sm">Delete</a></li></td>
+              
+            <td> 
+                <form action="/edit/todo/<%= todos._id %>" method="POST" class="d-flex">
+                    <input type="text" name="todo" class="form-control" value ="<%= todos.todo %>" placeholder="Enter URL">
+                    <input type="submit" value="Edit" class="btn btn-md btn-primary mx-2">
+                </form>
+        </tr>
+        <% }) %>
+         
+        </tbody>
+      </table>
+</div>
+
+
+<script>
+  function handleEdit() {
+  // Get the new todo text from the input field
+  var newText = document.getElementById("edit-input").value;
+
+  // Use Axios to make a PUT request to the server to update the todo
+  axios.put('/todos/<%= todo._id %>', { text: newText })
+    .then(function (response) {
+      // If the update is successful, redirect the user to the todo list
+      window.location.href = '/todos';
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+</script>
+
+
+<%- include("./partials/footer")  %>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.5/axios.min.js"></script> -->
