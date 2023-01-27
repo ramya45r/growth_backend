@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const axios = require('axios');
 
-const todoRoute=require('./routes/todoRoute')
+const todoRoute=require('./routes/urlRoute')
 const app=express()
 
 mongoose.connect('mongodb://127.0.0.1:27017/todo');
@@ -29,8 +29,8 @@ app.set("view engine", "ejs");
 
 app.use(cors());
 // routes
-app.use(require("./routes/todoRoute"))
-app.use(require("./routes/todo"))
+app.use(require("./routes/urlRoute"))
+app.use(require("./routes/url"))
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from

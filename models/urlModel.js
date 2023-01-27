@@ -3,9 +3,11 @@ const mongoose = require("mongoose");
 const TodoSchema = new mongoose.Schema({
   todo: {
     type: String,
-    // required: true,
   },
-  count:{
+  wordCount:{
+    type:Number
+  },
+  imageCount:{
     type:Number
   }
 });

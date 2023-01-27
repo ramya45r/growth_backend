@@ -38,7 +38,7 @@
   <li class="list-group-item">URL <%=index+1 %>:<%= todos.todo %> 
 
   <form method="GET" action="/count/todo/<%= todos._id %>">
-    <li class="list-group-item bold_text ">No.of words:<span></span>
+    <li class="list-group-item bold_text ">No.of words:<span><%= todos.wordCount%></span>
       <button 
       class="btn btn-danger btn-sm align-left">Count</button>
     </li>
@@ -46,7 +46,7 @@
   
 
   <form method="GET" action="/imgcount/todo/<%= todos._id %>">
-    <li class="list-group-item bold_text">No.of Images: <span>gg</span>
+    <li class="list-group-item bold_text">No.of Images: <span><%= todos.imageCount%></span>
       <button 
       class="btn btn-danger btn-sm">Count</button>
     </li>
@@ -55,7 +55,6 @@
 
               
         <% }) %>
-
     </ul>
 
     <table class="table">
@@ -105,9 +104,3 @@
       console.log(error);
     });
 }
-
-</script>
-
-
-<%- include("./partials/footer")  %>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.5/axios.min.js"></script> -->
